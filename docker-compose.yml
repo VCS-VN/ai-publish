@@ -1,0 +1,18 @@
+services:
+  nextjs:
+    build: .
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules        # protect container deps
+    environment:
+      - NODE_ENV=development
+    networks:
+      - cf-net
+    command: pnpm dev
+
+networks:
+  cf-net:
+    name: cf-net
+    driver: bridge
+    external: true
