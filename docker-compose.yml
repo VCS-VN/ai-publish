@@ -1,0 +1,17 @@
+services:
+  nextjs:
+    build: .
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=development
+    networks:
+      - preview
+    command: pnpm dev
+
+networks:
+  preview:
+    name: preview
+    driver: bridge
+    external: true
