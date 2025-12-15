@@ -1,0 +1,16 @@
+services:
+  nextjs:
+    build: .
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules   # ✅ anonymous volume (container-only)
+    environment:
+      NODE_ENV: development
+    command: pnpm dev
+    networks:
+      - preview
+
+networks:
+  preview:
+    external: true
